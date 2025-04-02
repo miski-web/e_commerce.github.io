@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miski onlineshop | Trendy Fashion & Beauty Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <p>Free shipping on orders over $50 | <span id="current-date"></span></p>
+    </div>
+
+    <!-- Header/Navbar -->
+    <header class="header-container">
+        <div class="logo">
+            <img src="images/logo.jpg" alt="GlamCart Logo">
+            <div>
+                <h1>Miski onlineshop</h1>
+                <p>Style at Your Doorstep</p>
+            </div>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Shop</a></li>
+                <li class="dropdown">
+                    <a href="#">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="filterProducts('sunglasses')">Sunglasses</a>
+                        <a href="#" onclick="filterProducts('perfumes')">Perfumes</a>
+                        <a href="#" onclick="filterProducts('creams')">Creams</a>
+                        <a href="#" onclick="filterProducts('girls-fashion')">Girls' Fashion</a>
+                    </div>
+                </li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="nav-icons">
+            <div class="search-container">
+                <input type="text" placeholder="Search products..." id="search-input">
+                <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
+            </div>
+            <a href="#wishlist"><i class="far fa-heart"></i></a>
+            <a href="#" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+            <a href="#account"><i class="far fa-user"></i></a>
+        </div>
+        <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <span onclick="toggleMobileMenu()">&times;</span>
+        </div>
+        <ul>
+            <li><a href="#home" onclick="toggleMobileMenu()">Home</a></li>
+            <li><a href="#products" onclick="toggleMobileMenu()">Shop</a></li>
+            <li class="mobile-dropdown">
+                <a href="#" onclick="toggleMobileDropdown()">Categories <i class="fas fa-chevron-down"></i></a>
+                <div class="mobile-dropdown-content">
+                    <a href="#" onclick="filterProducts('sunglasses'); toggleMobileMenu()">Sunglasses</a>
+                    <a href="#" onclick="filterProducts('perfumes'); toggleMobileMenu()">Perfumes</a>
+                    <a href="#" onclick="filterProducts('creams'); toggleMobileMenu()">Creams</a>
+                    <a href="#" onclick="filterProducts('girls-fashion'); toggleMobileMenu()">Girls' Fashion</a>
+                </div>
+            </li>
+            <li><a href="#about" onclick="toggleMobileMenu()">About</a></li>
+            <li><a href="#contact" onclick="toggleMobileMenu()">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Summer Collection 2023</h2>
+            <h1>Up to 50% Off</h1>
+            <p>Discover our trendy sunglasses, perfumes, and fashion accessories</p>
+            <button class="cta-btn">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature-card">
+            <i class="fas fa-truck"></i>
+            <h3>Free Shipping</h3>
+            <p>On all orders over $50</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-undo"></i>
+            <h3>Easy Returns</h3>
+            <p>30-day return policy</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-lock"></i>
+            <h3>Secure Payment</h3>
+            <p>100% secure checkout</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-headset"></i>
+            <h3>24/7 Support</h3>
+            <p>Dedicated support</p>
+        </div>
+    </section>
+
+    <!-- Product Categories -->
+    <section class="categories">
+        <h2 class="section-title">Shop by Category</h2>
+        <p class="section-subtitle">Browse our popular collections</p>
+        <div class="category-grid">
+            <div class="category-card" onclick="filterProducts('sunglasses')">
+                <img src="images/sunglass.jpg" alt="Sunglasses">
+                <div class="category-overlay">
+                    <h3>Sunglasses</h3>
+                    <button>Shop Now</button>
+                </div>
+            </div>
+            <div class="category-card" onclick="filterProducts('perfumes')">
+                <img src="images/perfume.jpg" alt="Perfumes">
+                <div class="category-overlay">
+                    <h3>Perfumes</h3>
+                    <button>Shop Now</button>
+                </div>
+            </div>
+            <div class="category-card" onclick="filterProducts('creams')">
+                <img src="images/cream.jpg" alt="Creams">
+                <div class="category-overlay">
+                    <h3>Creams</h3>
+                    <button>Shop Now</button>
+                </div>
+            </div>
+            <div class="category-card" onclick="filterProducts('girls-fashion')">
+                <img src="images/watch.jpg" alt="Girls watch">
+                <div class="category-overlay">
+                    <h3>Girls' Fashion</h3>
+                    <button>Shop Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="featured-products">
+        <div class="section-header">
+            <h2 class="section-title">Featured Products</h2>
+            <p class="section-subtitle">Our most popular items this season</p>
+            <div class="view-all">
+                <a href="#" onclick="displayAllProducts()">View All</a>
+            </div>
+        </div>
+        <div class="products-grid" id="product-display">
+            <!-- Products will be loaded here via JavaScript -->
+        </div>
+    </section>
+
+    <!-- Special Offer -->
+    <section class="special-offer">
+        <div class="offer-content">
+            <h2>Limited Time Offer</h2>
+            <h1>Buy 1 Get 1 Free</h1>
+            <p>On selected sunglasses and perfumes</p>
+            <div class="countdown">
+                <h3>Offer Ends In:</h3>
+                <div class="countdown-timer">
+                    <div class="countdown-item">
+                        <span id="days">00</span>
+                        <p>Days</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours">00</span>
+                        <p>Hours</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes">00</span>
+                        <p>Minutes</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds">00</span>
+                        <p>Seconds</p>
+                    </div>
+                </div>
+            </div>
+            <button class="cta-btn">Shop the Offer</button>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <p class="section-subtitle">Trusted by thousands of happy customers</p>
+        <div class="testimonial-slider">
+            <div class="testimonial-card">
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>"The sunglasses I bought are amazing! Great quality and perfect fit. Will definitely shop here again."</p>
+                <div class="customer">
+                    <img src="images/pp.jpg" alt="Sarah J.">
+                    <div>
+                        <h4>Sarah J.</h4>
+                        <p>Verified Buyer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p>"My daughter loves the dress we got from GlamCart. The shipping was super fast too!"</p>
+                <div class="customer">
+                    <img src="images/profile1-500x500.png" alt="Michael T.">
+                    <div>
+                        <h4>Michael T.</h4>
+                        <p>Verified Buyer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>"The perfume smells divine and lasts all day. Excellent customer service as well!"</p>
+                <div class="customer">
+                    <img src="images/profile3-500x500.png" alt="Emma K.">
+                    <div>
+                        <h4>Emma K.</h4>
+                        <p>Verified Buyer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get 10% off your first order and stay updated on new arrivals and exclusive offers</p>
+            <form id="newsletter-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <h2 class="section-title">Our Story</h2>
+            <p>Miski onlineshop was founded in 2023 with a simple mission: to bring affordable, high-quality fashion and beauty products to customers worldwide. We carefully curate our collections to ensure you get the best products at the best prices.</p>
+            <p>Our team of fashion experts works tirelessly to stay on top of trends so you can always find the latest styles in our store.</p>
+            <div class="about-stats">
+                <div class="stat">
+                    <h3>5000+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="stat">
+                    <h3>100+</h3>
+                    <p>Brands</p>
+                </div>
+                <div class="stat">
+                    <h3>24/7</h3>
+                    <p>Customer Support</p>
+                </div>
+            </div>
+        </div>
+        <div class="about-image">
+            <img src="images/team.jpg" alt="Our Team">
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">We'd love to hear from you</p>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h3>Address</h3>
+                        <p>123 Fashion Street, Style City, 10001</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <h3>Phone</h3>
+                        <p>+25-26-19-01-24-89</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h3>Email</h3>
+                        <p>miskiabdikadir55@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h3>Working Hours</h3>
+                        <p>Monday - Friday: 9AM - 6PM</p>
+                        <p>Saturday: 10AM - 4PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <img src="images/logo.jpg" alt="GlamCart Logo">
+                    <div>
+                        <h1>Miski onlineshop</h1>
+                        <p>Style at Your Doorstep</p>
+                    </div>
+                </div>
+                <p>Your one-stop shop for trendy fashion and beauty products.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Shop</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#" onclick="filterProducts('sunglasses')">Sunglasses</a></li>
+                    <li><a href="#" onclick="filterProducts('perfumes')">Perfumes</a></li>
+                    <li><a href="#" onclick="filterProducts('creams')">Creams</a></li>
+                    <li><a href="#" onclick="filterProducts('girls-fashion')">Girls' Fashion</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Sale Items</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on new arrivals and special offers.</p>
+                <form class="footer-newsletter">
+                    <input type="email" placeholder="Your email address">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-apple-pay"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Miski onlineshop. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Shipping Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Shopping Cart</h3>
+            <button onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be loaded here -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+                <button class="cta-btn" onclick="toggleCart()">Continue Shopping</button>
+            </div>
+        </div>
+        <div class="cart-summary">
+            <div class="cart-total">
+                <p>Subtotal:</p>
+                <p>$<span id="cart-subtotal">0.00</span></p>
+            </div>
+            <div class="cart-total">
+                <p>Shipping:</p>
+                <p>$<span id="cart-shipping">5.00</span></p>
+            </div>
+            <div class="cart-total grand-total">
+                <p>Total:</p>
+                <p>$<span id="cart-total">5.00</span></p>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+            <div class="continue-shopping">
+                <a href="#" onclick="toggleCart()"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+
+    <!-- Quick View Modal -->
+    <div id="quick-view-modal" class="quick-view-modal">
+        <div class="quick-view-content">
+            <span class="close-quick-view" onclick="closeQuickView()">&times;</span>
+            <div class="quick-view-product">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="script.js" defer></script>
+    
+    
+</body>
+</html>
